@@ -11,9 +11,48 @@ npx cap sync
 
 ## API
 
-<docgen-index></docgen-index>
+<docgen-index>
+
+* [`print(...)`](#print)
+* [Interfaces](#interfaces)
+
+</docgen-index>
 
 <docgen-api>
-<!-- run docgen to generate docs from the source -->
-<!-- More info: https://github.com/ionic-team/capacitor-docgen -->
+<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### print(...)
+
+```typescript
+print(options: { receipt: ReceiptModel; }) => Promise<void>
+```
+
+| Param         | Type                                                                |
+| ------------- | ------------------------------------------------------------------- |
+| **`options`** | <code>{ receipt: <a href="#receiptmodel">ReceiptModel</a>; }</code> |
+
+--------------------
+
+
+### Interfaces
+
+
+#### ReceiptModel
+
+| Prop         | Type                                                |
+| ------------ | --------------------------------------------------- |
+| **`title`**  | <code>string</code>                                 |
+| **`footer`** | <code>string</code>                                 |
+| **`lines`**  | <code>any</code>                                    |
+| **`header`** | <code><a href="#headermodel">HeaderModel</a></code> |
+
+
+#### HeaderModel
+
+| Prop                | Type                |
+| ------------------- | ------------------- |
+| **`agencyName`**    | <code>string</code> |
+| **`agencyContact`** | <code>string</code> |
+| **`agencyAdress`**  | <code>string</code> |
+
 </docgen-api>

@@ -1,5 +1,5 @@
 package com.it4u.telpo.com;
-
+import android.content.Context;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;

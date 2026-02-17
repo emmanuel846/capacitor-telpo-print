@@ -52,6 +52,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
     api files('libs/telpo_api.jar')
+    implementation(files('libs/sunyardapi_v1.6.23_202511131033.jar'))
     api files('libs/core-3.1.0.jar')
     api files('libs/emv_pro4.0.jar')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"

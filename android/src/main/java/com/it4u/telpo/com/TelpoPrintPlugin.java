@@ -9,6 +9,8 @@ import com.telpo.tps550.api.TelpoException;
 import com.telpo.tps550.api.printer.ThermalPrinter;
 import com.telpo.tps550.api.printer.UsbThermalPrinter;
 import android.os.Build;
+import android.os.RemoteException;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,7 +19,8 @@ import org.json.JSONObject;
 import com.sunyard.api.printer.IPrinter;
 import com.sunyard.api.printer.OnPrintListener;
 import com.sunyard.api.printer.PrintConstant;
-
+import com.it4u.telpo.com.service.DeviceService;
+import com.it4u.telpo.com.service.DeviceServiceGet;
 
 @CapacitorPlugin(name = "TelpoPrint")
 public class TelpoPrintPlugin extends Plugin {
@@ -52,6 +55,8 @@ public class TelpoPrintPlugin extends Plugin {
             } else if (result.equals("com.telpo.tps550.api.printer.OverHeatException")) {
                 call.reject("OVERHEAT");
             }
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
         call.resolve();
     }
@@ -201,6 +206,17 @@ public class TelpoPrintPlugin extends Plugin {
         } catch (RemoteException e) {
             e.printStackTrace();
             presentToast(context, "Erreur: " + e.getMessage(), ToastType.LONG);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
+    }
+    private void presentToast(Context context, String message, ToastType type) {
+        int duration = (type == ToastType.LONG) ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT;
+        Toast.makeText(context, message, duration).show();
+    }
+
+    private enum ToastType {
+        LONG,
+        SHORT
     }
 }

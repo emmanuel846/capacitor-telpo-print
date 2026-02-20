@@ -1,4 +1,7 @@
 package com.it4u.telpo.com;
+import static androidx.fragment.app.FragmentManager.TAG;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
@@ -10,6 +13,7 @@ import com.telpo.tps550.api.printer.ThermalPrinter;
 import com.telpo.tps550.api.printer.UsbThermalPrinter;
 import android.os.Build;
 import android.os.RemoteException;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -36,6 +40,7 @@ public class TelpoPrintPlugin extends Plugin {
     }
 
 
+    @SuppressLint("RestrictedApi")
     @PluginMethod
     public void print(PluginCall call) {
         JSObject data = call.getObject("receipt");
@@ -45,6 +50,7 @@ public class TelpoPrintPlugin extends Plugin {
             if(isSunyard()){
                 printSunYard(new JSONObject(data.toString()),this.getContext());
             }else{
+                Log.d(TAG, "TELPO print() called with: call = [" + call + "]");
                 printReceipt(data);
             }
 
@@ -63,7 +69,7 @@ public class TelpoPrintPlugin extends Plugin {
      public boolean isSunyard(){
         String manufacturer = Build.MANUFACTURER.toLowerCase();
         String model = Build.MODEL.toLowerCase();
-        return manufacturer.contains("sunyard") || model.contains("s200");
+        return manufacturer.contains("sunyard") || model.contains("s");
     }
     void printReceipt(JSONObject data){
         try {
